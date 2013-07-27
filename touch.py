@@ -30,6 +30,7 @@ class Device(object):
 if __name__ == "__main__":
 	import sys
 	import midi
+	from notes import scale
 
 	device = sys.argv[1]
 	mode = sys.argv[2]
@@ -38,10 +39,13 @@ if __name__ == "__main__":
 	midi = midi.MidiPlayer()
 	start = 36
 	if mode == "perc":
-		mapping = [41,36,38,39,40,42]
+		mapping = range(start, start+6)
 	if mode == "instr":
 		# mapping = [prox, L, D, R, U, C]
-		mapping = [48,39,40,42,36,45]
+		note = sys.argv[3]
+		key = sys.argv[4]
+		s = scale(note, key)
+		mapping = [n+start for n in s]
 	olds = [False]*6
 	threshold = 40
 	min_velocity = 10
@@ -52,7 +56,6 @@ if __name__ == "__main__":
 			window.update(element)
 
 		line = [window.value-element for element, window in zip(line, windows)]
-		print line
 		line_bool = [int(element>threshold) for element in line]
 
 		for i,(current,old) in enumerate(zip(line_bool,olds)):
