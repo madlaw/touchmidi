@@ -13,6 +13,14 @@ class MidiPlayer:
 	def noteOff(self, note):
 		self.midiout.sendMessage(rtmidi.MidiMessage.noteOff(1, note))
 
+	def chordOn(self, notes, velocity):
+		for note in notes:
+			self.noteOn(note, velocity)
+
+	def chordOff(self, notes):
+		for note in notes:
+			self.noteOff(note)
+
 if __name__ == "__main__":
 	midi = MidiPlayer()
 
