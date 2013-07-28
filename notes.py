@@ -7,11 +7,10 @@ def scale(note, key):
   TONE = 2
   SEMITONE = 1
 
-	"""
-	ionian - major scale
-	aeolian - minor scale
-	phrygian_dominan - ``jewish scale''
-	"""
+
+	# ionian - major scale
+	# aeolian - minor scale
+	# phrygian_dominan - ``jewish scale''
   keys = {
       "ionian": [TONE, TONE, SEMITONE, TONE, TONE, TONE],
 			"dorian": [TONE, SEMITONE, TONE, TONE, TONE, SEMITONE],
